@@ -24,7 +24,7 @@ public class ProjectValidator implements Validator{
     	String description = project.getDescription();
 
 
-        if (name.isBlank())
+        if (name.isEmpty())
             errors.rejectValue("name", "required");
         else if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH)
             errors.rejectValue("name", "size");

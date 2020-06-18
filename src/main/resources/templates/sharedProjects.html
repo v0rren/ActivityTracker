@@ -1,34 +1,45 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org">
-<head th:replace="/fragments/base.html::head(title='Taskmanager - shared with')">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/css/P.css}">
+<style>
+table, th, td, tbody {
+	border: 1px solid black;
+}
+</style>
 </head>
 <body>
-    <h1 align="center">Shared with me projects</h1>
-    <div th:if="${sharedProjectsList.size() > 0}" align="center">
-        <table>
-            <tr>
-                <th>name</th>
-                <th>description</th>
-                <th>owner firstname</th>
-                <th>owner lastname</th>
-            </tr>
-            <tbody>
-                <tr th:each="project : ${sharedProjectsList}">
-                    <td><a th:href="'/projects/' + ${project.id}"
-                        th:text="${project.name}">...</a></td>
-                    <td th:text="${project.description}"></td>
-                    <td th:text=${project.owner.firstName}></td>
-                    <td th:text=${project.owner.lastName}></td>
-                    
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div th:unless="${sharedProjectsList.size() > 0}" align="center">
-        <h5>No project to show</h5>
-    </div>
-    <h3 align="center"><a href="/home" style="padding.top: 20px" class="btn btn-primary">Home</a></h3>
+	<h1 align="center">Shared with me projects</h1>
+	<div th:if="${sharedProjectsList.size() > 0}" align="center">
+		<table>
+			<tr>
+				<th>name</th>
+				<th>description</th>
+				<th>owner firstname</th>
+				<th>owner lastname</th>
+			</tr>
+			<tbody>
+				<tr th:each="project : ${sharedProjectsList}">
+					<td><a th:href="'/projects/' + ${project.id}"
+						th:text="${project.name}">...</a></td>
+					<td th:text="${project.description}"></td>
+					<td th:text=${project.owner.firstName}></td>
+					<td th:text=${project.owner.lastName}></td>
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:unless="${sharedProjectsList.size() > 0}" align="center">
+		<h5>No project to show</h5>
+	</div>
+	<h3 align="center">
+		<a href="/home" style="padding .top: 20px" class="btn btn-primary">Home</a>
+	</h3>
 </body>
 </html>

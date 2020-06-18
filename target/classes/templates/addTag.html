@@ -1,14 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org">
-<head
-	th:replace="/fragments/base.html::head(title='Taskmanager - addTag')">
+<head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/css/P.css}">
+<style>
+table, th, td, tbody {
+	border: 1px solid black;
+}
+</style>
 </head>
 <body>
 	<div align="center">
 		<h1>Add a tag to your project:</h1>
-		
-		
+
+
 		<!----------------->
 		<!-- INIZIO FORM -->
 		<!----------------->
@@ -32,24 +41,24 @@
 				</tr>
 				<tr>
 					<td><label for="tagColorInput">Tag Color</label></td>
-					<td><input type="color" name="color"/></td>
+					<td><input type="color" name="color" /></td>
 				</tr>
 			</table>
-			
-			
-		<div style="padding-top: 10px">
+
+
+			<div style="padding-top: 10px">
 				<button type="submit" class="btn btn-primary">Add Tag</button>
 			</div>
 		</form>
-		
-		
-			<div align="center">
-			<h4 style="padding-top: 30px">
-			<a th:href="'/projects/' + ${projectId}" class="btn btn-primary">Back to Project</a>
-				<a href="/projects" class="btn btn-primary">My Projects</a> <a
-					href="/home" class="btn btn-primary">Home</a>
+	</div>
 
-			</h4>
+	<div align="center">
+		<h4 style="padding-top: 30px">
+			<a th:href="'/projects/' + ${projectId}" class="btn btn-primary">Back
+				to Project</a> <a href="/projects" class="btn btn-primary">My
+				Projects</a> <a href="/home" class="btn btn-primary">Home</a>
+
+		</h4>
 	</div>
 </body>
 </html>

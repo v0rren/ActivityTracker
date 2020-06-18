@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="/fragments/base.html::head(title='Taskmanager - addTag')">
+</head>
+<body>
+	<div align="center">
+		<h1>Add a tag to your project:</h1>
+		
+		
+		<!----------------->
+		<!-- INIZIO FORM -->
+		<!----------------->
+		<form id="projectTagForm"
+			th:action="@{'/project/' + ${projectId} + '/addTag'}"
+			th:object="${tagForm}" method="POST">
+			<table>
+				<tr>
+					<td><label for="tagNameInput">Tag name</label></td>
+					<td><input id="tagNameInput" type="text"
+						placeholder="TAG NAME" required th:field="*{name}" /></td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+						th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td><label for="tagDescriptionInput">Tag Description</label></td>
+					<td><input id="tagDescriptionInput" type="text"
+						placeholder="DESCRIPTION" th:field="*{description}" /></td>
+					<td th:if="${#fields.hasErrors('description')}"
+						th:errors="*{description}" th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td><label for="tagColorInput">Tag Color</label></td>
+					<td><input type="color" name="color"/></td>
+				</tr>
+			</table>
+			
+			
+		<div style="padding-top: 10px">
+				<button type="submit" class="btn btn-primary">Add Tag</button>
+			</div>
+		</form>
+		
+		
+			<div align="center">
+			<h4 style="padding-top: 30px">
+			<a th:href="'/projects/' + ${projectId}" class="btn btn-primary">Back to Project</a>
+				<a href="/projects" class="btn btn-primary">My Projects</a> <a
+					href="/home" class="btn btn-primary">Home</a>
+
+			</h4>
+	</div>
+</body>
+</html>

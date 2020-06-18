@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="/fragments/base.html::head(title='Taskmanager - add member')">
+</head>
+<body>
+	<div align="center">
+		<h1>Share project with someone:</h1>
+		<form id="shareProjectForm"
+			th:action="@{'/project/share/' + ${projectId}}"
+			th:object="${memberForm}" method="POST">
+			<table>
+				<tr>
+					<td><label for="memberUserNameInput">Username</label></td>
+					<td><input id="memberUserNameInput" type="text"
+						placeholder="USERNAME" required th:field="*{userName}" /></td>
+					<td th:if="${#fields.hasErrors('userName')}"
+						th:errors="*{userName}" th:style="'color:red'"></td>
+				</tr>
+			</table>
+			<div style="padding-top: 10px">
+				<button type="submit" class="btn btn-primary">Add Member</button>
+			</div>
+		</form>
+		<div align="center">
+			<h4 style="padding-top: 30px">
+				<a th:href="'/projects/' + ${projectId}" class="btn btn-primary">Back
+					to Project</a> <a href="/projects" class="btn btn-primary">My
+					Projects</a> <a href="/home" class="btn btn-primary">Home</a>
+
+			</h4>
+		</div>
+		</div>
+</body>
+</html>

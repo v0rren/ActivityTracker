@@ -1,0 +1,36 @@
+body {
+	font-family: Gotham, Helvetica Neue, Helvetica, Arial, ' sans-serif';
+	color: black;
+	background-color: lightgrey
+}
+
+a:link {
+	color: #400080
+}
+
+h3 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #800080;
+}
+
+.btn-primary {
+	color: black;
+	background-color: skyblue;
+	border-radius: 5px;
+}
+
+.btn-primary:hover {
+	color: white;
+	background-color: blue;
+	border-radius: 5px;
+}
+
+.comment-box-style {
+	background-color: white;
+	border-radius: 5px;
+	display: inline-block;
+	padding: 5px;
+}
+td,tr,th{
+	padding: 10px;
+}

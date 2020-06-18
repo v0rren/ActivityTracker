@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html::head(title='Task Manager - project Num:' + ${project.id})">
+
+
+</head>
+<body>
+	<div align="center">
+		<h1 th:text="${project.name}"></h1>
+		<h4 th:text="${project.description}" style="color: gray"></h4>
+		<h4 th:text="${#temporals.format(project.date,'dd-MM-yyyy')}"
+			style="color: gray"></h4>
+
+
+		<!--------------------------->
+		<!-- CONDIVISIONE PROGETTO -->
+		<!--------------------------->
+
+		<!--LISTA CONDIVISIONE-->
+		<div th:if="${members.size() > 0}">
+			<h3>Shared with:</h3>
+			<table>
+				<tr>
+					<th style="padding: right:20px">First Name</th>
+					<th>Last Name</th>
+				</tr>
+				<tr th:each="member : ${members}">
+					<td th:text="${member.firstName}">...</td>
+					<td th:text="${member.lastName}">...</td>
+				</tr>
+			</table>
+		</div>
+
+		<div th:unless="${members.size() > 0}">Project not shared with
+			anyone</div>
+
+		<!-- AGGIUNGERE NUOVO MEMBRO -->
+		<h3 style="padding-top: 30px">
+			<a th:href="'/project/share/' + ${project.id}">Share</a>
+		</h3>
+
+
+
+
+
+		<!----------------------------->
+		<!-- LISTA TASK DEL PROGETTO -->
+		<!----------------------------->
+		<h3 style="padding-top: 30px">Tasks:</h3>
+		<div th:if="${project.tasks.size() > 0}" align="center">
+			<table>
+				<tr>
+					<th>name</th>
+					<th>description</th>
+					<th>creation date</th>
+					<th>Assigned To</th>
+					<th>completed</th>
+				</tr>
+				<tbody>
+					<tr th:each="task : ${project.tasks}">
+						<td><a th:href="'/projects/tasks/' + ${task.id}"
+							th:text="${task.name}"></a></td>
+						<td th:text="${task.description}"></td>
+						<td
+							th:text="${#temporals.format(task.creationTimestamp,'dd-MM-yyyy')}"></td>
+						<td th:text="${task.assignedTo?.firstName}"></td>
+						<td th:if="${task.completed}">Yes</td>
+						<td th:unless="${task.completed}">No</td>
+
+						<td><a th:href="'/tasks/update/' + ${task.id}">Update
+								task</a>
+						<td><a
+							th:href="'/projects/' + ${project.id} + '/tasks/' +
+	                    				${task.id} + '/addTag'">Add
+								tag</a></td>
+						<td><a th:href="'/tasks/assignuser/' + ${task.id}">Assign
+								User </a>
+						<td><a th:href="'/tasks/' + ${task.id} + '/comment'">Add
+								Comment </a>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div th:unless="${project.tasks.size() > 0}" align="center">No Task
+			to show</div>
+
+
+
+
+		<!----------------------------->
+		<!-- LISTA TAGS DEL PROGETTO -->
+		<!----------------------------->
+		<h3 style="padding-top: 30px">Tags:</h3>
+		<div th:if="${project.tags.size() > 0}">
+			<table>
+				<tr>
+					<th style="padding: right:20px">Tag name</th>
+					<th>Description</th>
+				</tr>
+				<tr th:each="tag : ${project.tags}">
+					<td><a
+						th:href="'/projects/' + ${project.id} + '/tag/' + ${tag.id}"
+						th:text="${tag.name}">...</a></td>
+					<td th:text="${tag.description }">...</td>
+				</tr>
+			</table>
+		</div>
+		<div th:unless="${project.tags.size() > 0}">No tag to show</div>
+
+
+
+		<!--------------->
+		<!-- LINK VARI -->
+		<!--------------->
+
+
+
+
+		<div align="center">
+			<h4 style="padding-top: 30px">
+				<a href="/projects" class="btn btn-primary">My Projects</a> <a
+					th:href="'/projects/' + ${project.id} + '/tasks/add'"
+					class="btn btn-primary">Create Task</a> <a
+					th:href="'/project/' + ${project.id} + '/addTag'"
+					class="btn btn-primary">Add Tag</a>
+			</h4>
+
+
+			<h4>
+				<a href="/home" class="btn btn-primary">Home</a>
+			</h4>
+
+
+
+		</div>
+</body>
+</html>

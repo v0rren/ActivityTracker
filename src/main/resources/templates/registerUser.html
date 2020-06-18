@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/base.html::head(title='Task Manager - register')">
+</head>
+
+<style>
+.login-box-style {
+	background-color: white;
+	border-radius: 5px;
+	width: 300px;
+	box-shadow: 0px 0px 20px black;
+	padding: 0px;
+	margin: auto;
+}
+
+a:link {
+	color: skyblue;
+}
+
+a:hover {
+	color: blue;
+}
+
+body {
+	background: url('/images/welcome.jpeg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+</style>
+
+<body>
+	<div align="center">
+		<h1>Register new User</h1>
+		<form id = "registerUserForm"
+      	th:action="@{/users/register}"
+      	method="POST">
+		    <table>
+		        <tr>
+		            <td><label for="userNameInput">Username</label>
+		            <td><input id=userNameInput type="text" th:field="${credentialsForm.userName}" placeholder="USERNAME" required/></td>
+		            <td th:if="${#fields.hasErrors('credentialsForm.userName')}" th:errors="${credentialsForm.userName}" th:style="'color:red'"></td>
+		        </tr>
+		        <tr>
+		            <td><label for="passwordInput">Password</label></td>
+		            <td><input id="passwordInput" type="password" th:field="${credentialsForm.password}" placeholder="PASSWORD" required/></td>
+		            <td th:if="${#fields.hasErrors('credentialsForm.password')}" th:errors="${credentialsForm.password}" th:style="'color:red'"></td>
+		        </tr>
+		        <tr>
+		            <td><label for="firstNameInput">First Name</label></td>
+		            <td><input id="firstNameInput" type="text" th:field="${userForm.firstName}" placeholder="FIRST NAME" required/></td>
+		            <td th:if="${#fields.hasErrors('userForm.firstName')}" th:errors="${userForm.firstName}" th:style="'color:red'"></td>
+		        </tr>
+		        <tr>
+		            <td><label for="lastNameInput">Last Name</label></td>
+		            <td><input id="lastNameInput" type="text" th:field="${userForm.lastName}" placeholder="LAST NAME" required/></td>
+		            <td th:if="${#fields.hasErrors('userForm.lastName')}" th:errors="${userForm.lastName}" th:style="'color:red'"></td>
+		        </tr>
+		    </table>
+		  	<div style="padding-top: 20px"><button type="submit">Register</button></div>
+		</form>
+	</div>
+</body>
+</html>

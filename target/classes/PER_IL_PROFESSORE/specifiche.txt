@@ -1,0 +1,366 @@
+[PROGETTO: TASKMANAGER]
+[Gruppo: Gabriele Romualdi 521111 - Claudio Vona 525962]
+
+
+ATTORE 1: User con ruolo DEFAULT
+ATTORE 2: User con ruolo ADMIN
+
+
+
+
+
+
+
+
+
+Caso d'uso 1 REGISTER - attore principale: ATTORE1 (non esiste ancora ATTORE2)
+	1-L'utente entra nel sistema per potersi registrare
+	2-L'utente seleziona "Register" per registrarsi
+	3-L'utente inserisce username, password, firstname e lastname
+	4-Il sistema verifica la correttezza delle credenziali
+	5-L'utente può ora accedere al sistema
+
+	estensioni: 3a: l'utente inserisce uno username non valido (pochi o troppi
+			caratteri);
+			il sistema mostra un messaggio di errore
+
+		    3b: l'utente inserisce uno username già utilizzato,
+			il sistema mostra un messaggio di errore
+
+		    3c: l'utente inserisce una password non valida,
+			il sistema mostra un messaggio di errore
+
+		    3d: l'utente non inserisce username, password, firstname o lastname,
+			il sistema mostra un messaggio che invita a completare il campo
+
+
+
+
+
+Caso d'uso 2 LOGIN - attore principale: ATTORE1/ATTORE2(se modificato dal database)
+	1-L'utente vuole effettuare il login al sistema
+	2-L'utente inserisce le proprie credenziali
+	3-Il sistema verifica che le credenziali siano valide
+	4-L'utente può ora accedere al sistema
+
+	estensioni: 2a: l'utente inserisce uno username non valido;
+			il sistema mostra un messaggio di errore
+
+		    2b: l'utente inserisce una password non valida;
+			il sistema mostra un messaggio di errore
+
+
+
+
+
+
+Caso d'uso 3 NEW PROJECT - attore principale: ATTORE1/ATTORE2
+	1-L'utente vuole creare un proprio progetto
+	2-L'utente seleziona "create new project"
+	3-L'utente inserisce projectName, description e la data e conferma la creazione
+	4-L'utente potrà vedere ora il progetto nella lista dei suo progetti
+
+	estensioni: 3a: l'utente inserisce un nome non valido (pochi o troppi
+			caratteri);
+			il sistema mostra un messaggio di errore
+
+		    3b: l'utente non inserisce un nome,
+			il sistema mostra un messaggio che invita a completare il campo
+
+		    3c: l'utente inserisce una descrizione non valida (troppi caratteri)
+			il sistema mostra un messaggio di errore
+
+		    3d: l'utente non seleziona una data,
+			il sistema mostra un messaggio che invita a completare il campo
+
+
+
+
+
+
+Caso d'uso 4 SHOW PROJECT - attore principale: ATTORE1/ATTORE2
+	1-L'utente vuole vedere i dettagli di un progetto che ha creato
+	2-L'utente seleziona "My Projects", il sistema restituisce la vista con tutti
+	  i project creati da quell'utente
+	3-L'utente seleziona il project di cui vuole vedere il dettaglio
+	4-Il sistema mostra il dettaglio del project, compreso di:
+		Dati creazione project;
+		Utenti membri del progetto;
+		Task associati;
+		Tag associati;
+
+
+
+
+
+
+Caso d'uso 5 SHARE PROJECT - attore principale: ATTORE1/ATTORE2 (SOLO OWNER PROJECT)
+	1-L'utente vuole condividere un project con un altro utente del sistema
+	2-L'utente seleziona "Share" per condividere il project
+	3-L'utente inserisce lo username dell'utente col quale condividere il project
+	4-L'utente seleziona "Add member"
+	5-Da questo momento in poi l'utente scelto è un nuovo membro del project.
+	  Inoltre l'utente scelto vedrà il project nella lista di project di cui ha
+	  visibilità.
+
+	estensioni: 3a: L'utente inserisce uno username inesistente,
+			il sistema mostra un messaggio di errore
+
+		    3b: L'utente inserisce il proprio username (MA E' PROPRIETARIO,
+			dunque non può essere MEMBRO)
+			il sistema mostra un messaggio di errore
+
+		    3c: L'utente inserisce lo username di un utente GIA' membro,
+			il sistema mostra un messaggio di errore
+
+		    3d: L'utente non inserisce uno username,
+			il sistema mostra un messaggio che invita a completare il campo
+
+
+
+
+
+
+Caso d'uso 6 SHOW SHARED PROJECTS - attore principale: ATTORE1/ATTORE2
+	1-L'utente vuole visualizzare la lista di project condivisi con lui
+	2-L'utente seleziona "Shared with me"
+	3-Il sistema mostra la lista di tutti i project di cui quell'utente ha visibilità
+
+	estensione: 3a: Se l'utente non è membro di alcun progetto, viene visualizzato
+			il messaggio "No project to show"
+
+
+
+
+
+
+Caso d'uso 7 ADD TAG (al project) - attore principale: ATTORE1/ATTORE2 (SOLO OWNER PROJECT)
+	1-L'utente vuole aggiungere un Tag al project
+	2-L'utente seleziona "Add tag"
+	3-L'utente inserisce il nome, la descrizione ed il colore del tag
+	4-Il tag sarà ora visibile nel dettaglio del project
+
+	estensioni: 3a: L'utente inserisce un nome non valido (pochi o troppi
+			caratteri);
+			il sistema mostra un messaggio di errore
+
+		    3b: L'utente inserisce il nome di un tag GIA' presente,
+			il sistema mostra un messaggio di errore
+
+		    3c: L'utente non inserisce il nome del tag,
+			il sistema mostra un messaggio che invita a completare il campo
+
+		    3d: L'utente non seleziona un colore,
+			il sistema imposterà a "Nero" il colore del tag
+
+		    3e: L'utente inserisce una descrizione troppo lunga,
+			il sistema mostra un messaggio di errore
+
+
+
+
+
+
+Caso d'uso 8 ADD TASK (al project) - attore principale: ATTORE1/ATTORE2 (SOLO OWNER PROJECT)
+	1-L'utente vuole aggiungere un task al project
+	2-L'utente seleziona "Create task"
+	3-L'utente inserisce il nome, la descrizione del task
+	4-Il task sarà ora visibile nel dettaglio del project
+
+	estensioni: 3a: L'utente inserisce un nome non valido (pochi o troppi
+			caratteri);
+			il sistema mostra un messaggio di errore
+
+		    3b: L'utente non inserisce il nome del task,
+			il sistema mostra un messaggio che invita a completare il campo
+
+		    3c: L'utente inserisce una descrizione troppo lunga,
+			il sistema mostra un messaggio di errore
+
+
+
+
+
+
+Caso d'uso 9 ADD TAG (al task) - attore principale: ATTORE1/ATTORE2 (SOLO OWNER PROJECT)
+	1-L'utente vuole associare un tag del progetto ad un task
+	2-L'utente seleziona "Add tag" in corrispondenza del task scelto
+	3-L'utente inserisce il nome del tag da associare
+	4-Da ora in poi nel dettaglio del task sarà visibile il tag associato;
+	  inoltre nel dettaglio del tag sarà visibile il task a cui è associato.
+
+	estensioni: 3a: L'utente inserisce il nome di un tag inesistente
+			il sistema mostra un messaggio di errore
+
+		    3b: L'utente inserisce il nome di un tag già associato al task,
+			il sistema mostra un messaggio di errore
+
+		    3c: L'utente non inserisce il nome del tag,
+			il sistema mostra un messaggio che invita a completare il campo
+
+
+
+
+
+
+Caso d'uso 10 UPDATE PROJECT - attore principale: ATTORE1/ATTORE2
+	1-L'utente vuole aggiornare i dati di un proprio project
+	2-L'utente seleziona "Update Information"
+	3-L'utente inserisce il nuovo nome, la nuova descrizione e/o la nuova data e
+	  conferma
+	4-I dati del project sono ora modificati e pronti per essere visualizzati
+
+
+
+
+
+
+
+Caso d'uso 10 UPDATE TASK - attore principale: ATTORE1/ATTORE2 (SOLO OWNER PROJECT)
+	1-L'utente vuole aggiornare i dati di un task di un proprio project
+	2-L'utente seleziona "Update task"
+	3-L'utente inserisce il nuovo nome, la nuova descrizione e/o se il task
+	  è stato completato
+	4-I dati del task sono ora modificati e pronti per essere visualizzati
+
+
+
+
+
+
+
+Caso d'uso 11 ASSIGN TASK - attore principale: ATTORE1/ATTORE2 (SOLO OWNER PROJECT)
+	1-L'utente vuole assegnare un task ad un utente membro del progetto
+	2-L'utente seleziona "Assign user" in corrispondenza del task scelto
+	3-L'utente inserisce lo username del membro del progetto
+	4-Da ora in poi il task sarà associato a quell'utente
+
+	estensioni: 3a: L'utente inserisce lo username di un utente inesistente
+			il sistema mostra un messaggio di errore
+
+		    3b: L'utente inserisce lo username di un utente non membro,
+			il sistema mostra un messaggio di errore
+
+		    3c: L'utente inserisce lo username del proprietario del progetto
+			(QUINDI NON UN MEMBRO)
+			il sistema mostra un messaggio di errore
+
+		    3d: L'utente non inserisce uno username,
+			il sistema mostra un messaggio che invita a completare il campo
+
+
+
+
+
+
+Caso d'uso 12 ADD COMMENT - attore principale: ATTORE1/ATTORE2
+	1-L'utente vuole lasciare un commento su un task
+	2-L'utente seleziona "Add comment" in corrispondenza del task scelto
+	3-L'utente inserisce il commento
+	4-Da ora in poi sarà possibile visualizzare il commento nel dettaglio task
+
+	estensione: 3a: L'utente inserisce un commento troppo lungo,
+			il sistema mostra un messaggio di errore
+
+
+
+
+
+
+Caso d'uso 13 SHOW PROFILE - attore principale: ATTORE1/ATTORE2
+	1-L'utente vuole visualizzare le informazioni riguardo il suo profilo
+	2-L'utente seleziona "Profile"
+	3-L'utente può vedere le informazioni riguardanti il suo profilo
+
+
+
+
+
+
+Caso d'uso 14 UPDATE PROFILE - attore principale: ATTORE1/ATTORE2
+	1-L'utente vuole aggiornare i suoi dati
+	2-L'utente seleziona "Update profile"
+	3-L'utente inserisce username, password, firstname e/o lastname desiderato/i
+	  e conferma le modifiche
+	4-I dati dell'utente sono ora aggiornati
+
+	estensioni: verranno visualizzati i messaggi d'errore del login, qualora
+		    i campi risultassero non validi
+
+
+
+
+
+
+
+Caso d'uso 15 REMOVE PROJECT - attore principale: ATTORE1/ATTORE2 (SOLO OWNER PROJECT)
+	1-L'utente vuole eliminare un proprio project
+	2-L'utente seleziona "My projects", il sistema mostra l'elenco dei project
+	3-L'utente seleziona "Remove Project"
+	4-Il progetto viene eliminato dal sistema, insieme a tutti i tag e task associati
+
+
+
+
+
+
+
+Caso d'uso 16 REMOVE TASK - attore principale: ATTORE1/ATTORE2 (SOLO OWNER PROJECT)
+	1-L'utente vuole eliminare un task da un proprio project
+	2-L'utente seleziona il task da eliminare, il sistema mostra il dettaglio del task
+	3-L'utente seleziona "Remove Task"
+	4-Il task viene eliminato dal sistema, insieme a tutti i commenti associati
+
+
+
+
+
+
+
+
+
+
+
+/**************/
+/* ONLY ADMIN */ NB: Per diventare Admin è necessario accedere al DB
+/**************/
+
+Caso d'uso 17 ALL USER - attore principale: ATTORE2
+	1-L'admin vuole visualizzare la lista di tutti gli utenti del sistema
+	2-L'admin seleziona "All users list"
+	3-Il sistema mostra l'elenco di tutti gli utenti con un link verso i project
+	  di quell'utente
+
+
+
+
+
+
+Caso d'uso 18 DELETE USER - attore principale: ATTORE2
+	1-L'admin vuole eliminare un utente dal sistema
+	2-L'admin seleziona "All users list"
+	3-Il sistema mostra l'elenco di tutti gli utenti con un link verso i project
+	  di quell'utente
+	4-L'admin seleziona "DELETE" in corrispondenza dell'utente da eliminare
+	5-L'utente verrà eliminato dal sistema
+
+
+
+
+
+
+Caso d'uso 19 DELETE USER PROJECT - attore principale: ATTORE2
+	1-L'admin vuole eliminare un project di un utente del sistema
+	2-L'admin seleziona "All users list"
+	3-Il sistema mostra l'elenco di tutti gli utenti con un link verso i project
+	  di quell'utente
+	4-L'admin seleziona "Projects" in corrispondenza dell'utente proprietario del
+	  project da eliminare
+	5-L'admin seleziona "Remove project" in corrispondenza del project da eliminare
+	6-Il project verrà eliminato dal sistema
+
+
+
+/********/
+/* FINE */
+/********/

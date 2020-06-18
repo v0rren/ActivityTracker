@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html::head(title='Task Manager - userProjects(A)')">
+</head>
+<body>
+	<div align="center">
+		<h1>My Projects</h1>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>name</th>
+						<th>description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="project : ${projectsList}">
+						<td th:text="${project.name}"></td>
+						<td th:text="${project.description}"></td>
+						<td><a th:href="'/admin/users/' + ${userId} + '/projects/' +
+									    ${project.id} + '/remove'">Remove Project</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h4>
+			<a href="/admin" class="btn btn-primary">Home(A)</a>
+		</h4>
+	</div>
+</body>
+</html>

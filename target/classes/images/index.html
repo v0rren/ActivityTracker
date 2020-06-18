@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html::head(title='Task Manager - welcome')">
+</head>
+
+<style>
+.login-box-style {
+	background-color: white;
+	border-radius: 5px;
+	width: 200px;
+	box-shadow: 0px 0px 20px black;
+	padding: 0px;
+	margin: auto;
+}
+
+a:link {
+	color: skyblue;
+}
+
+a:hover {
+	color: blue;
+}
+
+body {
+	background: url('/images/welcome.jpeg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+</style>
+
+<body>
+
+	<div style="padding-top: 170px" align="center">
+		<div style="padding-top: 10px; padding-bottom: 5px;"
+			class="login-box-style">
+			<h1>Welcome!</h1>
+			<p>
+				<a href="/login" class="btn btn-primary">Login</a>
+			</p>
+			<p>
+				<a href="/users/register" class="btn btn-primary">Register</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

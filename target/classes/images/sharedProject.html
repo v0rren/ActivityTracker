@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html::head(title='Task Manager - project Num:' + ${project.id})">
+</head>
+<body>
+	<div align="center">
+		<h1 th:text="${project.name}"></h1>
+		<h4 th:text="${project.description}" style="color: gray"></h4>
+		<h4 th:text="${project.date}" style="color: gray"></h4>
+
+
+		<!----------------------------->
+		<!-- LISTA TASK DEL PROGETTO -->
+		<!----------------------------->
+		<h3 style="padding-top: 30px">Tasks:</h3>
+		<div th:if="${project.tasks.size() > 0}" align="center">
+			<table>
+				<tr>
+					<th>name</th>
+					<th>description</th>
+					<th>creation date</th>
+					<th>Assigned To</th>
+					<th>completed</th>
+				</tr>
+				<tbody>
+					<tr th:each="task : ${project.tasks}">
+						<td><a th:href="'/projects/tasks/' + ${task.id}"
+							th:text="${task.name}"></a></td>
+						<td th:text="${task.description}"></td>
+						<td th:text="${task.creationTimestamp}"></td>
+						<td th:text="${task.assignedTo?.firstName}"></td>
+						<td th:if="${task.completed}">Yes</td>
+						<td th:unless="${task.completed}">No</td>
+
+						<td><a th:href="'/tasks/update/' + ${task.id}">Update
+								task</a>
+						<td><a
+							th:href="'/projects/' + ${project.id} + '/tasks/' +
+	                    				${task.id} + '/addTag'">Add
+								tag</a></td>
+						<td><a th:href="'/tasks/assignuser/' + ${task.id}">Assign
+								User </a>
+						<td><a th:href="'/tasks/' + ${task.id} + '/comment'">Add Comment
+								 </a>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+
+		<!----------------------------->
+		<!-- LISTA TAGS DEL PROGETTO -->
+		<!----------------------------->
+		<h3 style="padding-top: 30px">Tags:</h3>
+		<div th:if="${project.tags.size() > 0}">
+			<table>
+				<tr>
+					<th style="padding: right:20px">Tag name</th>
+					<th>Description</th>
+				</tr>
+				<tr th:each="tag : ${project.tags}">
+					<td><a
+						th:href="'/projects/' + ${project.id} + '/tag/' + ${tag.id}"
+						th:text="${tag.name}">...</a></td>
+					<td th:text="${tag.description }">...</td>
+				</tr>
+			</table>
+		</div>
+		<div th:unless="${project.tags.size() > 0}">No tag to show</div>
+
+
+
+		<!--------------->
+		<!-- LINK VARI -->
+		<!--------------->
+		<h4>
+			<a href="/projects">My Projects</a>
+		</h4>
+
+
+
+		<h4>
+			<a th:href="'/projects/' + ${project.id} + '/tasks/add'">Create
+				Task</a>
+		</h4>
+
+
+
+		<h4>
+			<a href="/home" class="btn btn-primary">Home</a>
+		</h4>
+
+
+
+	</div>
+</body>
+</html>

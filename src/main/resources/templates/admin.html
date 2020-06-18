@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html::head(title='Task Manager - admin Home')">
+</head>
+
+<style>
+.login-box-style {
+	background-color: white;
+	border-radius: 5px;
+	width: 200px;
+	box-shadow: 0px 0px 20px black;
+	padding: 0px;
+	margin: auto;
+}
+
+a:link {
+	color: skyblue;
+}
+
+a:hover {
+	color: blue;
+}
+
+body {
+	background: url('/images/loggedin.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+</style>
+
+<body>
+	<div align="center">
+		<div align="center"
+			style="padding-top: 5px; padding-bottom: 5px; background-color: gray;">
+			<h1 th:text="'Welcome, admin ' + ${user.firstName} + '!'"
+				style="color: white; align: center;"></h1>
+		</div>
+		<img th:insert="fragments/profileImage.html::proPict">
+
+
+		<div style="padding-top: 200px;">
+			<div class="login-box-style" align="center">
+				<div
+					style="font-family: Gotham, Helvetica Neue, Helvetica, Arial, ' sans-serif';">
+					<b> <a href="/admin/users">All users list</a>
+					</b>
+				</div>
+				<div>
+					<b> <a href="/home">Default Home</a>
+					</b>
+				</div>
+				<div>
+					<i> <a href="/logout">Logout</a>
+					</i>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

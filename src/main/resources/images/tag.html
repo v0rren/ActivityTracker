@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head th:replace="fragments/base.html::head(title='Task Manager - tag')">
+</head>
+<body>
+	<div align="center">
+		<h1 th:text="'tag: ' + ${tag.name}"></h1>
+		<table>
+			<tr>
+				<td>Tag name:</td>
+				<td th:text="${tag.name}"></td>
+			</tr>
+			<tr>
+				<td>Tag description:</td>
+				<td th:text="${tag.description}" style="color: gray"></td>
+			</tr>
+			<tr>
+				<td>Tag color:</td>
+				<td th:style="'background-color:' + ${tag.color}"></td>
+			</tr>
+		</table>
+
+		<h3 style="padding-top: 30px">Tasks:</h3>
+		<div th:if="${tag.tasks.size() > 0}">
+			<table>
+				<tr>
+					<th style="padding: right:20px">Task name</th>
+					<th>Description</th>
+				</tr>
+				<tr th:each="task : ${tag.tasks}">
+					<td th:text="${task.name}"></td>
+					<td th:text="${task.description}"></td>
+				</tr>
+			</table>
+		</div>
+		<div style="padding-top: 30px">
+			<a th:href="'/projects/' + ${projectId}" class="btn btn-primary">Back</a>
+		</div>
+		<div style="padding-top: 30px">
+			<a href="/home" class="btn btn-primary">Home</a>
+		</div>
+		<div style="padding-top: 30px">
+			<a th:href="'/project/' +${projectId} + '/deleteTag/' + ${tag.id}">Remove Tag</a>
+		</div>
+	</div>
+</body>
+</html>

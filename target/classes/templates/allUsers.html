@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html::head(title='Task Manager - allUsers')">
+</head>
+<body>
+	<div align="center">
+		<h1>All users:</h1>
+		<div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Username</th>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Owned Projects</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="credentials : ${credentialsList}">
+						<td th:text="${credentials.userName}"></td>
+						<td th:text="${credentials.user.firstName}"></td>
+						<td th:text="${credentials.user.lastName}"></td>
+						<td>
+							<form method="GET"
+								th:action="@{'/admin/users/' + ${credentials.user.id} + '/projects'}">
+								<button type="submit" name="submit" value="value">PROJECTS</button>
+
+							</form>
+						</td>
+						<td>
+							<form method="POST"
+								th:action="@{/admin/users/{username}/delete(username=${credentials.userName})}">
+								<button type="submit" name="submit" value="value">DELETE</button>
+							</form>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="/admin" class="btn btn-primary">Home(A)</a>
+		</div>
+	</div>
+</body>
+</html>

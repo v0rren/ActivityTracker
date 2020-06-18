@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html::head(title='Task Manager - task')">
+</head>
+<body>
+	<div align="center">
+		<h1 th:text="'Task: ' + ${task.name}"></h1>
+		<table>
+			<tr>
+				<td>Task name:</td>
+				<td th:text="${task.name}"></td>
+			</tr>
+			<tr>
+				<td>Task description:</td>
+				<td th:text="${task.description}" style="color: gray"></td>
+			</tr>
+			<tr>
+				<td>Task Creation Date:</td>
+				<td th:text="${task.creationTimestamp}" style="color: green"></td>
+			</tr>
+			<tr>
+				<td>Task Completed:</td>
+				<td th:if="${task.completed}">Yes</td>
+				<td th:unless="${task.completed}">No</td>
+			</tr>
+		</table>
+
+		<!----------------------------->
+		<!-- LISTA TAG DEL TASK -->
+		<!----------------------------->
+		<h3 style="padding-top: 30px">Tags:</h3>
+		<div th:if="${task.tags.size() > 0}">
+			<table>
+				<tr>
+					<th style="padding: right:20px">Tag name</th>
+					<th>Description</th>
+					<th>Color</th>
+				</tr>
+				<tr th:each="tag : ${task.tags}">
+					<td th:text="${tag.name}"></td>
+					<td th:text="${tag.description}"></td>
+					<td th:style="'background-color:' + ${tag.color}"></td>
+				</tr>
+			</table>
+		</div>
+		<div th:unless="${task.tags.size() > 0}">No tag to show</div>
+
+	</div>
+
+	<!----------------------------->
+	<!-- LISTA COMMENTI DEL TASK -->
+	<!----------------------------->
+	<div style="padding-left: 200px">
+		<h4 style="padding-top: 30px">Comments:</h4>
+		<div th:if="${task.comments.size() > 0}">
+
+			<div th:each="comment : ${task.comments}" style="padding-top: 10px">
+				<div th:text="${comment.owner.firstName}" style="font-weight: bold;"></div>
+				<div th:text="${comment.name}" class="comment-box-style"></div>
+				<div th:text="${#temporals.format(comment.date,'dd-MM-yyyy')}"></div>
+			</div>
+		</div>
+		<div th:unless="${task.comments.size() > 0}">No Comment to show</div>
+
+	</div>
+
+	<div align="center">
+		<h4 style="padding-top: 30px">
+			<a th:href="'/tasks/remove/' + ${task.id}" class="btn btn-primary">Remove
+				Task</a>  <a href="/projects"
+				class="btn btn-primary">My Projects</a> <a href="/home"
+				class="btn btn-primary">Home</a>
+
+		</h4>
+
+
+
+
+
+	</div>
+</body>
+</html>

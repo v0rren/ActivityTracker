@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html::head(title='Task Manager - task')">
+</head>
+<body>
+	<div align="center">
+		<h1>Register new task:</h1>
+		<form id="registerTaskForm"
+			th:action="@{'/projects/' + ${projectId} + '/tasks/add'}"
+			th:object="${taskForm}" method="POST">
+			<table>
+				<tr>
+					<td><label for="taskNameInput">Task name</label></td>
+					<td><input id="taskNameInput" type="text" placeholder="NAME"
+						required th:field="*{name}" /></td>
+					<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+						th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td><label for="taskDescriptionInput">Description</label>
+					<td><input id="taskDescriptionInput" type="text"
+						placeholder="DESCRIPTION" th:field="*{description}" /></td>
+					<td th:if="${#fields.hasErrors('description')}"
+						th:errors="*{description}" th:style="'color:red'"></td>
+				</tr>
+			</table>
+			<div style="padding-top: 10px">
+				<button type="submit" class="btn btn-primary">Add Task</button>
+			</div>
+		</form>
+
+		<div align="center">
+			<h4 style="padding-top: 30px">
+			<a th:href="'/projects/' + ${projectId}" class="btn btn-primary">Back to Project</a>
+				<a href="/projects" class="btn btn-primary">My Projects</a> <a
+					href="/home" class="btn btn-primary">Home</a>
+
+			</h4>
+
+			
+
+		</div>
+</body>
+</html>

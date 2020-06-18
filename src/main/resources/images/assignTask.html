@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="/fragments/base.html::head(title='Taskmanager - shared with')">
+</head>
+<body>
+	<div align="center">
+		<h1>Assign Task to someone:</h1>
+		<form id="assignTaskForm"
+			th:action="@{'/tasks/assignuser/' + ${taskid}}"
+			th:object="${memberForm}" method="POST">
+
+			<table>
+				<tr>
+					<td><label for="memberUserNameInput">Username</label></td>
+					<td><input id="memberUserNameInput" type="text" required
+						th:field="*{userName}" /></td>
+					<td th:if="${#fields.hasErrors('userName')}"
+						th:errors="*{userName}" th:style="'color:red'"></td>
+				</tr>
+				<tr>
+					<td><button type="submit">Assign Task</button></td>
+				</tr>
+			</table>
+		</form>
+		<a href="/home">Home</a>
+	</div>
+</body>
+</html>

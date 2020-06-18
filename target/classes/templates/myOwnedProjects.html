@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html::head(title='Task Manager - ownedProjects')">
+	  <link rel="stylesheet" href="mystyle.css">
+	
+</head>
+<body>
+	<div align="center">
+		<h1>My Projects</h1>
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th>name</th>
+						<th>description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="project : ${projectsList}">
+						<td><a th:href="'/projects/' + ${project.id}"
+							th:text="${project.name}">...</a></td>
+						<td th:text="${project.description}"></td>
+						<td><a th:href="'/projects/update/' + ${project.id}">Update
+								Information</a>
+						<td><a th:href="'/projects/remove/' + ${project.id}">Remove
+								Project</a>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<h4 style="padding-top: 30px">
+			<a href="/home" class="btn btn-primary">Home</a>
+		</h4>
+	</div>
+</body>
+</html>
